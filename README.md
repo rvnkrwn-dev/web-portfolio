@@ -1,6 +1,6 @@
 # Portfolio Website - Astro + GSAP
 
-Portfolio website modern yang dibangun dengan Astro JS dan GSAP animations, menampilkan desain minimalis dan profesional dengan dark theme dan animasi yang spektakuler.
+Portfolio website modern yang dibangun dengan Astro JS dan GSAP animations, menampilkan desain minimalis dan profesional dengan dark theme dan animasi yang spektakuler. Menggunakan sistem konfigurasi terpusat untuk kemudahan kustomisasi.
 
 ![Portfolio Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop)
 
@@ -98,6 +98,7 @@ portfolio/
 ├── src/
 │   ├── pages/
 │   │   ├── index.astro           # Homepage with GSAP
+│   │   ├── about.astro           # About page
 │   │   ├── gsap-demo.astro       # GSAP showcase (NEW!)
 │   │   ├── vibrant-demo.astro    # Full design system demo
 │   │   └── experience-demo.astro # Experience cards demo
@@ -113,10 +114,13 @@ portfolio/
 │   │   ├── Starfield.astro       # Animated starfield background
 │   │   ├── AbstractShapes.astro  # Decorative shapes
 │   │   └── HeroVibrant.astro     # Vibrant hero section
+│   ├── config/
+│   │   └── site.ts               # Centralized configuration (NEW!)
 │   └── assets/                   # Images & static assets
 ├── public/                        # Static files
 ├── DESIGN_SYSTEM.md              # Complete design system docs
 ├── GSAP_GUIDE.md                 # GSAP implementation guide (NEW!)
+├── CUSTOMIZATION_GUIDE.md        # Quick customization guide
 ├── astro.config.mjs              # Astro configuration
 └── package.json                  # Dependencies
 ```
@@ -131,6 +135,125 @@ portfolio/
 | `npm run preview` | Preview build sebelum deploy                 |
 
 ## 🎨 Kustomisasi
+
+### 🎯 Konfigurasi Terpusat (site.ts)
+
+Portfolio ini menggunakan sistem konfigurasi terpusat di `src/config/site.ts` untuk memudahkan kustomisasi. Semua konten utama seperti informasi personal, statistik, project, dan kontak dapat diubah dari satu file.
+
+```typescript
+// src/config/site.ts
+
+// Informasi Dasar
+export const SITE = {
+  title: "Portfolio - Creative Developer",
+  description: "I craft immersive digital experiences...",
+  author: "REVAN KURNIAWAN",
+  name: "Revan Kurniawan",
+  role: "SOFTWARE DEVELOPER",
+  email: "rvnkrwn@gmail.com",
+  url: "https://yourportfolio.com",
+};
+
+// Statistik (terintegrasi dengan StatsGSAP component)
+export const STATS = [
+  { number: "5", suffix: "+", label: "Years Experience" },
+  { number: "50", suffix: "+", label: "Projects Completed" },
+  { number: "30", suffix: "+", label: "Happy Clients" },
+  { number: "100", suffix: "%", label: "Client Satisfaction" },
+];
+
+// Projects (terintegrasi dengan ProjectsGSAP component)
+export const PROJECTS = {
+  sectionLabel: "Selected Work",
+  sectionTitle: ["Featured", "Projects"],
+  items: [
+    {
+      id: 1,
+      title: "Portfolio Website",
+      category: "Web Design",
+      description: "Modern portfolio website...",
+      image: "/projects/web-portfolio.png",
+      tags: ["Astro", "GSAP"],
+      link: "https://rvnkrwn.leci.app", // PENTING: Gunakan URL lengkap dengan https://
+    },
+  ],
+};
+
+// Contact Methods (terintegrasi dengan Contact section)
+export const CONTACT = {
+  sectionLabel: "Get in Touch",
+  sectionTitle: ["Let's Work", "Together"],
+  methods: [
+    {
+      icon: "email",
+      label: "Email",
+      value: SITE.email,
+      link: `mailto:${SITE.email}`,
+    },
+    // ... methods lainnya
+  ],
+};
+
+// About Page (terintegrasi dengan halaman About)
+export const ABOUT = {
+  pageLabel: "About",
+  pageTitle: ["Creative", "Developer"],
+  intro: `Hi, I'm ${SITE.name}, a creative developer...`,
+  stats: [
+    { number: "3+", label: "Years Experience" },
+    { number: "20+", label: "Projects Completed" },
+  ],
+  skills: {
+    categories: [
+      {
+        title: "Frontend",
+        items: ["Nuxt / Vue.js", "TypeScript / JavaScript"],
+      },
+      // ... categories lainnya
+    ],
+  },
+  experience: {
+    timeline: [
+      {
+        date: "2025 - Present",
+        title: "Owner & Lead Developer",
+        company: "Leci Kasir",
+        description: "Leading the design, development...",
+      },
+      // ... experience lainnya
+    ],
+  },
+};
+```
+
+### ⚠️ Penting: Format Link External
+
+Saat menambahkan link external di `PROJECTS.items`, **SELALU gunakan URL lengkap dengan protocol** (`https://` atau `http://`):
+
+```typescript
+// ✅ BENAR - dengan protocol
+link: "https://rvnkrwn.leci.app",
+link: "https://example.com",
+
+// ❌ SALAH - tanpa protocol (akan dianggap relative path)
+link: "rvnkrwn.leci.app",
+link: "www.example.com",
+```
+
+Link tanpa protocol akan dianggap sebagai relative path dan akan mengarah ke `http://localhost:4321/www.example.com` (salah).
+
+### 🔄 Komponen yang Terintegrasi dengan site.ts
+
+Beberapa komponen sudah otomatis menggunakan konfigurasi dari `site.ts`:
+
+- **StatsGSAP.astro** → menggunakan `STATS`
+- **ProjectsGSAP.astro** → menggunakan `PROJECTS`
+- **HeroGSAP.astro** → menggunakan `HERO`
+- **Contact Section** → menggunakan `CONTACT`
+- **About Page** → menggunakan `ABOUT`
+- **Layout.astro** → menggunakan `NAV_LINKS` dan `SITE`
+
+Cukup edit file `site.ts` dan semua komponen akan terupdate otomatis!
 
 ### Colors
 
@@ -203,11 +326,25 @@ import AbstractShapes from '../components/AbstractShapes.astro';
 
 ### Content
 
+#### Quick Start - Edit site.ts (Rekomendasi)
+
+Untuk kustomisasi cepat, edit file `src/config/site.ts`:
+
+1. **Informasi Personal** - Update `SITE` object dengan nama, email, dan deskripsi Anda
+2. **Statistik** - Edit `STATS` array dengan pencapaian Anda
+3. **Projects** - Update `PROJECTS.items` dengan portfolio Anda (gunakan HTTPS!)
+4. **Contact Methods** - Edit `CONTACT.methods` dengan informasi kontak Anda
+5. **About Page** - Customize `ABOUT` dengan pengalaman dan skills Anda
+6. **Social Links** - Update `SOCIAL_LINKS` dengan profil media sosial Anda
+7. **Navigation** - Edit `NAV_LINKS` untuk mengubah menu navigasi
+
+#### Manual Customization (Jika Diperlukan)
+
+Jika Anda ingin kustomisasi lebih dalam:
+
 1. **Homepage** (`src/pages/index.astro`):
-   - Edit hero title, description, dan stats
-   - Update project cards dengan project Anda
-   - Ganti images dengan project screenshots Anda
-   - Update contact information
+   - Sudah terintegrasi dengan `site.ts`
+   - Edit hanya jika butuh perubahan layout
 
 2. **Vibrant Hero** (`src/components/HeroVibrant.astro`):
    - Customize name, title, description
@@ -216,13 +353,10 @@ import AbstractShapes from '../components/AbstractShapes.astro';
    - Modify code snippet content
 
 3. **Experience Section** (`src/components/Experience.astro`):
-   - Add your work experience data
-   - Update company names and locations
-   - Customize duration and years
+   - Lebih baik edit di `ABOUT.experience` di `site.ts`
 
 4. **Layout** (`src/layouts/Layout.astro`):
-   - Update logo dan site title
-   - Edit navigation links
+   - Sudah terintegrasi dengan `NAV_LINKS` dari `site.ts`
    - Update footer links (GitHub, Twitter, LinkedIn)
 
 ### Images
@@ -356,15 +490,43 @@ Lihat [GSAP_GUIDE.md](./GSAP_GUIDE.md) untuk dokumentasi lengkap dan code exampl
 ## 📖 Documentation
 
 Untuk dokumentasi lengkap:
-- Design System: [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)
-- GSAP Animations: [GSAP_GUIDE.md](./GSAP_GUIDE.md)
+- **Design System**: [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)
+- **GSAP Animations**: [GSAP_GUIDE.md](./GSAP_GUIDE.md)
+- **Quick Customization**: [CUSTOMIZATION_GUIDE.md](./CUSTOMIZATION_GUIDE.md)
+
+### 📝 Langkah Kustomisasi Cepat
+
+1. **Edit `src/config/site.ts`** - Ubah semua konten dari satu file
+2. **Ganti images** di folder `public/` dengan project screenshots Anda
+3. **Update social links** di `SOCIAL_LINKS`
+4. **Build & deploy** - `npm run build`
+
+Lihat [CUSTOMIZATION_GUIDE.md](./CUSTOMIZATION_GUIDE.md) untuk panduan lengkap.
 
 ## 💬 Contact
 
 Jika ada pertanyaan atau butuh bantuan:
-- Email: hello@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: rvnkrwn@gmail.com
+- GitHub: [@rvnkrwn-dev](https://github.com/rvnkrwn-dev)
+- LinkedIn: [/in/rvnkrwn](https://www.linkedin.com/in/rvnkrwn/)
 
 ---
 
-**Dibuat dengan ❤️ menggunakan Astro**
+## 🎓 Learn More
+
+- [Astro Documentation](https://docs.astro.build)
+- [GSAP Documentation](https://greensock.com/docs/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+## ⭐ Features Highlights
+
+- ✅ **Centralized Configuration** - Edit `site.ts` untuk semua konten
+- ✅ **Type-Safe** - Full TypeScript support
+- ✅ **Auto-Updated** - Komponen otomatis sync dengan config
+- ✅ **External Links** - Proper handling dengan target="_blank"
+- ✅ **SEO Optimized** - Meta tags dan structured data
+- ✅ **Performance** - Optimized for speed dan Core Web Vitals
+
+---
+
+**Dibuat dengan ❤️ menggunakan Astro + GSAP**
