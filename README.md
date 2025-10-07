@@ -65,31 +65,31 @@ http://localhost:4321
 
 ## 🎨 Design System & Animation Guide
 
-Portfolio ini dilengkapi dengan design system dan animation guide yang lengkap:
-- [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) - Dokumentasi design system lengkap
-- [GSAP_GUIDE.md](./GSAP_GUIDE.md) - Panduan implementasi GSAP (NEW!)
+Portfolio ini dilengkapi dengan panduan lengkap:
+- [QUICK_START.md](./QUICK_START.md) - Panduan cepat untuk memulai
 
 ### Komponen Utama
 
-#### GSAP Components (NEW!)
+#### GSAP Components
 1. **HeroGSAP** - Hero section dengan entrance animations & magnetic buttons
 2. **StatsGSAP** - Animated counters dengan scroll triggers
 3. **ProjectsGSAP** - Project cards dengan reveal animations
-4. **ContactGSAP** - Contact section dengan magnetic cards
+4. **NavbarMagnetic** - Navigation dengan magnetic effect
+5. **AnimationShowcase** - Showcase berbagai animasi GSAP
 
-#### Classic Components
-1. **Button Component** - 3 variants (primary, secondary, tag) dengan gradient effects
-2. **Experience Card** - Kartu dengan gradient border dan noise texture
-3. **Starfield Background** - Animated background dengan bintang berkelap-kelip
-4. **Abstract Shapes** - Elemen dekoratif nebula dan geometric shapes
-5. **Hero Vibrant** - Hero section lengkap dengan semua efek visual
+#### UI Components
+1. **Button** - Reusable button component dengan variants
+2. **ExperienceCard** - Kartu dengan gradient border dan noise texture
+3. **Starfield** - Animated background dengan bintang berkelap-kelip
+4. **AbstractShapes** - Elemen dekoratif nebula dan geometric shapes
+5. **HeroVibrant** - Hero section lengkap dengan semua efek visual
+6. **CustomCursor** - Custom cursor dengan animasi
+7. **Preloader** - Loading animation untuk page transitions
 
-### Demo Pages
+### Available Pages
 
-- **`/`** - Homepage dengan GSAP animations (UPDATED!)
-- **`/gsap-demo`** - Full showcase GSAP animations
-- **`/vibrant-demo`** - Showcase lengkap design system dengan semua komponen
-- **`/experience-demo`** - Demo khusus untuk experience cards
+- **`/`** - Homepage dengan GSAP animations
+- **`/about`** - About page dengan experience timeline
 
 ## 🏗️ Struktur Project
 
@@ -98,31 +98,37 @@ portfolio/
 ├── src/
 │   ├── pages/
 │   │   ├── index.astro           # Homepage with GSAP
-│   │   ├── about.astro           # About page
-│   │   ├── gsap-demo.astro       # GSAP showcase (NEW!)
-│   │   ├── vibrant-demo.astro    # Full design system demo
-│   │   └── experience-demo.astro # Experience cards demo
+│   │   └── about.astro           # About page
 │   ├── layouts/
 │   │   └── Layout.astro          # Main layout with GSAP nav
 │   ├── components/
-│   │   ├── HeroGSAP.astro        # GSAP Hero component (NEW!)
-│   │   ├── StatsGSAP.astro       # GSAP Stats component (NEW!)
-│   │   ├── ProjectsGSAP.astro    # GSAP Projects component (NEW!)
-│   │   ├── Button.astro          # Reusable button (3 variants)
-│   │   ├── ExperienceCard.astro  # Experience card with gradient border
-│   │   ├── Experience.astro      # Experience section
-│   │   ├── Starfield.astro       # Animated starfield background
+│   │   ├── HeroGSAP.astro        # GSAP Hero component
+│   │   ├── StatsGSAP.astro       # GSAP Stats component
+│   │   ├── ProjectsGSAP.astro    # GSAP Projects component
+│   │   ├── NavbarMagnetic.astro  # Magnetic navigation
+│   │   ├── AnimationShowcase.astro # Animation demos
+│   │   ├── Button.astro          # Reusable button
+│   │   ├── ExperienceCard.astro  # Experience card
+│   │   ├── HeroVibrant.astro     # Vibrant hero section
+│   │   ├── Starfield.astro       # Animated starfield
 │   │   ├── AbstractShapes.astro  # Decorative shapes
-│   │   └── HeroVibrant.astro     # Vibrant hero section
+│   │   ├── CustomCursor.astro    # Custom cursor
+│   │   └── Preloader.astro       # Loading animation
 │   ├── config/
-│   │   └── site.ts               # Centralized configuration (NEW!)
-│   └── assets/                   # Images & static assets
-├── public/                        # Static files
-├── DESIGN_SYSTEM.md              # Complete design system docs
-├── GSAP_GUIDE.md                 # GSAP implementation guide (NEW!)
-├── CUSTOMIZATION_GUIDE.md        # Quick customization guide
+│   │   └── site.ts               # Centralized configuration
+│   └── assets/
+│       ├── astro.svg             # Astro logo
+│       └── background.svg        # Background assets
+├── public/
+│   ├── projects/
+│   │   └── web-portfolio.png     # Project screenshots
+│   └── favicon.svg               # Site favicon
+├── .vscode/                      # VSCode settings
+├── QUICK_START.md                # Quick start guide
+├── README.md                     # Main documentation
 ├── astro.config.mjs              # Astro configuration
-└── package.json                  # Dependencies
+├── package.json                  # Dependencies
+└── tsconfig.json                 # TypeScript config
 ```
 
 ## 📝 Commands
@@ -485,23 +491,21 @@ Multiple layers bergerak dengan kecepatan berbeda untuk depth effect.
 ### Smooth Timeline Sequences
 Hero entrance menggunakan GSAP timeline untuk orchestrate multiple animations.
 
-Lihat [GSAP_GUIDE.md](./GSAP_GUIDE.md) untuk dokumentasi lengkap dan code examples.
+Lihat [QUICK_START.md](./QUICK_START.md) untuk dokumentasi lengkap dan code examples.
 
 ## 📖 Documentation
 
 Untuk dokumentasi lengkap:
-- **Design System**: [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)
-- **GSAP Animations**: [GSAP_GUIDE.md](./GSAP_GUIDE.md)
-- **Quick Customization**: [CUSTOMIZATION_GUIDE.md](./CUSTOMIZATION_GUIDE.md)
+- **Quick Start Guide**: [QUICK_START.md](./QUICK_START.md) - Panduan cepat memulai
 
 ### 📝 Langkah Kustomisasi Cepat
 
 1. **Edit `src/config/site.ts`** - Ubah semua konten dari satu file
-2. **Ganti images** di folder `public/` dengan project screenshots Anda
+2. **Ganti images** di folder `public/projects/` dengan project screenshots Anda
 3. **Update social links** di `SOCIAL_LINKS`
 4. **Build & deploy** - `npm run build`
 
-Lihat [CUSTOMIZATION_GUIDE.md](./CUSTOMIZATION_GUIDE.md) untuk panduan lengkap.
+Lihat [QUICK_START.md](./QUICK_START.md) untuk panduan lengkap.
 
 ## 💬 Contact
 
