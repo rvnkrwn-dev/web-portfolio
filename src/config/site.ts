@@ -38,9 +38,9 @@ export const HERO = {
 
 // Stats
 export const STATS = [
-  { number: "5", suffix: "+", label: "Years Experience" },
-  { number: "50", suffix: "+", label: "Projects Completed" },
-  { number: "30", suffix: "+", label: "Happy Clients" },
+  { number: "3+", label: "Years Experience" },
+  { number: "20+", label: "Projects Completed" },
+  { number: "15+", label: "Happy Clients" },
   { number: "100", suffix: "%", label: "Client Satisfaction" },
 ];
 
@@ -59,7 +59,7 @@ export const PROJECTS = {
         "Modern portfolio website with minimalist design and smooth animations, elegantly showcasing professional work and experience.",
       image: "/projects/web-portfolio.png",
       tags: ["Astro", "GSAP"],
-      link: "rvnkrwn.leci.app",
+      link: "https://rvnkrwn.leci.app",
     },
   ],
 };
@@ -108,9 +108,9 @@ export const ABOUT = {
     "Outside of coding, I continuously sharpen my skills by learning new technologies and actively sharing knowledge with the developer community.",
   ],
   stats: [
-    { number: "5+", label: "Years Experience" },
-    { number: "50+", label: "Projects Completed" },
-    { number: "30+", label: "Happy Clients" },
+    { number: "3+", label: "Years Experience" },
+    { number: "20+", label: "Projects Completed" },
+    { number: "15+", label: "Happy Clients" },
   ],
   skills: {
     sectionLabel: "Expertise",

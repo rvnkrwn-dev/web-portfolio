@@ -24,7 +24,12 @@ import { PROJECTS } from "../config/site";
             {
                 PROJECTS.items.map((project, index) => (
                     <article class="project-card" data-index={index}>
-                        <a href={project.link} class="project-link">
+                        <a
+                            href={project.link}
+                            class="project-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <div class="project-image-wrapper">
                                 <div class="project-image">
                                     <img
