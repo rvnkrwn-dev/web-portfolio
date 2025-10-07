@@ -1,0 +1,514 @@
+---
+import { HERO } from "../config/site";
+
+const { subtitle, title, description, cta } = HERO;
+const titleWords = title.split(" ");
+---
+
+<section class="hero-gsap">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-label">
+                <span class="label-text">
+                    {
+                        subtitle
+                            .split(" ")
+                            .map((word) => (
+                                <span class="label-word">{word}</span>
+                            ))
+                    }
+                </span>
+            </div>
+
+            <h1 class="hero-title">
+                {
+                    titleWords.map((word) => (
+                        <span class="title-line">
+                            <span class="word">{word}</span>
+                        </span>
+                    ))
+                }
+            </h1>
+
+            <p class="hero-description">{description}</p>
+
+            <div class="hero-cta">
+                <a href={cta.primary.href} class="btn btn-primary magnetic">
+                    <span class="btn-text">{cta.primary.text}</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a
+                    href={cta.secondary.href}
+                    class="btn btn-magnetic-underline magnetic magnetic-special"
+                >
+                    <span class="btn-text">{cta.secondary.text}</span>
+                    <span class="magnetic-underline"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimal decorations -->
+    <div class="hero-line line-left"></div>
+    <div class="hero-line line-right"></div>
+</section>
+
+<style>
+    .hero-gsap {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: var(--bg-primary);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-content {
+        max-width: 900px;
+        padding-top: 80px;
+    }
+
+    .hero-label {
+        margin-bottom: 3rem;
+        overflow: hidden;
+    }
+
+    .label-text {
+        display: inline-flex;
+        gap: 0.5rem;
+        color: #a1a1aa;
+        font-size: 0.875rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    .label-word {
+        display: inline-block;
+        transform-origin: center;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 8vw, 6.5rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 2.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .title-line {
+        display: block;
+        overflow: hidden;
+        padding: 0.2rem 0;
+    }
+
+    .word {
+        display: inline-block;
+        will-change: transform;
+        color: #ffffff;
+    }
+
+    .hero-description {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: #a1a1aa;
+        line-height: 1.8;
+        margin-bottom: 3rem;
+        max-width: 600px;
+        font-weight: 300;
+    }
+
+    .hero-cta {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        margin-bottom: 4rem;
+        align-items: center;
+    }
+
+    .btn {
+        position: relative;
+        padding: 1rem 2rem;
+        font-weight: 400;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        will-change: transform;
+        letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+        background: #ffffff;
+        color: #0a0a0f;
+    }
+
+    .btn-primary:hover {
+        transform: translateX(4px);
+    }
+
+    .btn-secondary {
+        color: #ffffff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+        border-color: #ffffff;
+        transform: translateX(4px);
+    }
+
+    /* Magnetic Morphing Button */
+    .btn-magnetic-underline {
+        position: relative;
+        padding: 0.75rem 1rem !important;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #ffffff;
+        text-decoration: none;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        will-change: transform;
+        letter-spacing: 0.02em;
+        transition:
+            background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 0;
+        background: transparent;
+        border: 1px solid transparent;
+        transform: translate(0, 0);
+    }
+
+    /* Underline default state */
+    .magnetic-underline {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #00ff88;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Transform to rounded button on proximity */
+    .btn-magnetic-underline.is-near {
+        padding: 1rem 2rem !important;
+        border-radius: 50px;
+        background: #00ff88;
+        color: #0a0a0f;
+        border-color: #00ff88;
+    }
+
+    .btn-magnetic-underline.is-near .magnetic-underline {
+        opacity: 0;
+    }
+
+    .btn-text {
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+    }
+
+    .btn-arrow {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover .btn-arrow {
+        transform: translateX(4px);
+    }
+
+    /* Minimal decorative lines */
+    .hero-line {
+        position: absolute;
+        width: 1px;
+        height: 100vh;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+        );
+        top: 0;
+    }
+
+    .line-left {
+        left: 10%;
+    }
+
+    .line-right {
+        right: 10%;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+        }
+
+        .hero-cta {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .btn {
+            justify-content: center;
+        }
+
+        .orb-1,
+        .orb-2,
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance animations
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    // DEBUG: Check if buttons exist
+    console.log("=== Button Debug ===");
+    console.log("All .btn elements:", document.querySelectorAll(".btn"));
+    console.log(
+        "Magnetic button:",
+        document.querySelector(".btn-magnetic-underline"),
+    );
+    console.log("Primary button:", document.querySelector(".btn-primary"));
+
+    // Set initial states
+    gsap.set(".hero-cta a", { opacity: 0, y: 20 });
+
+    // Set different initial states for each label word
+    const labelWords = gsap.utils.toArray(".label-word") as HTMLElement[];
+    gsap.set(labelWords[0] as HTMLElement, {
+        opacity: 0,
+        scale: 0,
+        rotation: 180,
+    }); // "Hello," - spin + scale
+    gsap.set(labelWords[1] as HTMLElement, {
+        opacity: 0,
+        y: -50,
+        rotationX: 90,
+    }); // "I'm" - flip from top
+
+    // Animate "Hello," with spin and bounce
+    tl.to(labelWords[0] as HTMLElement, {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1,
+        ease: "elastic.out(1.2, 0.5)",
+        delay: 0.2,
+    })
+        // Animate "I'm" with flip and bounce
+        .to(
+            labelWords[1] as HTMLElement,
+            {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 0.8,
+                ease: "back.out(2)",
+            },
+            "-=0.5",
+        )
+        .from(
+            ".title-line .word",
+            {
+                y: 60,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 1,
+                ease: "power3.out",
+            },
+            "-=0.5",
+        )
+        .from(
+            ".hero-description",
+            {
+                y: 30,
+                opacity: 0,
+                scale: 0.95,
+                duration: 1,
+                ease: "power2.out",
+            },
+            "-=0.8",
+        )
+        .to(
+            ".hero-cta a",
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: "back.out(1.5)",
+            },
+            "-=0.5",
+        );
+
+    // Multiple continuous animations for label words
+
+    // "Hello," - Gentle bounce with slight rotation
+    gsap.to(labelWords[0] as HTMLElement, {
+        y: -8,
+        rotation: 5,
+        duration: 1.5,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 2,
+    });
+
+    // "I'm" - Float up and down with scale pulse
+    gsap.to(labelWords[1] as HTMLElement, {
+        y: -5,
+        scale: 1.05,
+        duration: 2,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 2.3,
+    });
+
+    // Add subtle wiggle to "Hello,"
+    gsap.to(labelWords[0] as HTMLElement, {
+        rotation: -3,
+        duration: 0.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 2.5,
+    });
+
+    // Add subtle tilt to "I'm"
+    gsap.to(labelWords[1] as HTMLElement, {
+        rotationX: -5,
+        rotationY: 5,
+        duration: 1.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 3,
+    });
+
+    // Animate decorative lines
+    gsap.from(".hero-line", {
+        scaleY: 0,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        delay: 0.5,
+    });
+
+    // Long-range magnetic effect for both buttons
+    const buttons = document.querySelectorAll(".magnetic");
+    const magneticRadius = 100; // Radius untuk efek magnetic dari jauh
+
+    // Track mouse globally for long-range effect
+    document.addEventListener("mousemove", (e) => {
+        const mouseEvent = e as MouseEvent;
+
+        buttons.forEach((button) => {
+            const rect = button.getBoundingClientRect();
+            const buttonCenterX = rect.left + rect.width / 2;
+            const buttonCenterY = rect.top + rect.height / 2;
+
+            // Calculate distance from mouse to button center
+            const deltaX = mouseEvent.clientX - buttonCenterX;
+            const deltaY = mouseEvent.clientY - buttonCenterY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            // Check if cursor is within magnetic radius
+            if (distance < magneticRadius) {
+                // Calculate magnetic strength (stronger when closer)
+                const strength = 1 - distance / magneticRadius;
+                // Pull TOWARD cursor - move button toward mouse position
+                const pullX = deltaX * strength * 0.4;
+                const pullY = deltaY * strength * 0.4;
+
+                // Apply magnetic effect to ALL buttons uniformly
+                gsap.to(button, {
+                    x: pullX,
+                    y: pullY,
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+
+                // Special handling for magnetic-special buttons (morphing ONLY)
+                if (button.classList.contains("magnetic-special")) {
+                    const morphRadius = 80;
+
+                    // Check if should morph to rounded button
+                    if (distance < morphRadius) {
+                        button.classList.add("is-near");
+                    } else {
+                        button.classList.remove("is-near");
+                    }
+                }
+            } else {
+                // Outside magnetic radius - reset position
+                gsap.to(button, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+
+                // Reset morph state
+                if (button.classList.contains("magnetic-special")) {
+                    button.classList.remove("is-near");
+                }
+            }
+        });
+    });
+
+    // Enhanced hover effect for buttons
+    buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => {
+            gsap.to(button, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "back.out(1.5)",
+            });
+        });
+
+        button.addEventListener("mouseleave", () => {
+            gsap.to(button, {
+                x: 0,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.5)",
+            });
+
+            // Reset to underline state for magnetic-special
+            if (button.classList.contains("magnetic-special")) {
+                button.classList.remove("is-near");
+            }
+        });
+    });
+</script>

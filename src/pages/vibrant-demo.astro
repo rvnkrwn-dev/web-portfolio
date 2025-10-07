@@ -1,0 +1,571 @@
+---
+import HeroVibrant from '../components/HeroVibrant.astro';
+import Button from '../components/Button.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import Starfield from '../components/Starfield.astro';
+import AbstractShapes from '../components/AbstractShapes.astro';
+
+const experiences = [
+	{
+		number: "01",
+		title: "Senior UI Designer",
+		company: "User-Hub",
+		location: "Bangladesh",
+		duration: "JOB DURATION",
+		years: "2 YEARS"
+	},
+	{
+		number: "02",
+		title: "Full Stack Developer",
+		company: "TechCorp",
+		location: "Remote",
+		duration: "JOB DURATION",
+		years: "3 YEARS"
+	},
+	{
+		number: "03",
+		title: "Frontend Developer",
+		company: "StartupXYZ",
+		location: "Indonesia",
+		duration: "JOB DURATION",
+		years: "1.5 YEARS"
+	}
+];
+
+const skills = [
+	"UI/UX Design",
+	"Web Design",
+	"App Design",
+	"Graphic Design",
+	"Branding",
+	"Wordpress",
+	"React",
+	"Node.js",
+	"TypeScript"
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vibrant Design - Demo</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Hero Section with Vibrant Design -->
+	<HeroVibrant
+		name="Madhu"
+		title="Creative Developer & Designer"
+		description="Passionate about creating beautiful, functional, and user-friendly digital products. Specialized in web development, UI/UX design, and bringing ideas to life through code."
+		primaryButtonText="HIRE ME"
+		primaryButtonHref="#contact"
+		secondaryButtonText="VIEW WORK"
+		secondaryButtonHref="#work"
+	/>
+
+	<!-- Buttons Showcase -->
+	<section class="section-showcase">
+		<Starfield density="low" animated={true} />
+		<AbstractShapes variant="minimal" />
+
+		<div class="container">
+			<div class="section-header">
+				<span class="section-label">Component Library</span>
+				<h2 class="section-title">Button <span class="gradient-text">Variants</span></h2>
+				<p class="section-description">
+					Multiple button styles for different use cases with gradient effects and animations
+				</p>
+			</div>
+
+			<div class="buttons-grid">
+				<div class="button-demo-card">
+					<h3 class="demo-card-title">Primary Buttons</h3>
+					<p class="demo-card-description">Bold gradient buttons with glow effects for primary actions</p>
+					<div class="button-group">
+						<Button variant="primary" size="large">LARGE PRIMARY</Button>
+						<Button variant="primary" size="medium">MEDIUM PRIMARY</Button>
+						<Button variant="primary" size="small">SMALL PRIMARY</Button>
+					</div>
+				</div>
+
+				<div class="button-demo-card">
+					<h3 class="demo-card-title">Secondary Buttons</h3>
+					<p class="demo-card-description">Ghost style buttons for secondary actions</p>
+					<div class="button-group">
+						<Button variant="secondary" size="large">LARGE SECONDARY</Button>
+						<Button variant="secondary" size="medium">MEDIUM SECONDARY</Button>
+						<Button variant="secondary" size="small">SMALL SECONDARY</Button>
+					</div>
+				</div>
+
+				<div class="button-demo-card full-width">
+					<h3 class="demo-card-title">Tag Buttons</h3>
+					<p class="demo-card-description">Pill-shaped buttons for filters, skills, and categories</p>
+					<div class="button-group tags-group">
+						{skills.map((skill) => (
+							<Button variant="tag" size="small">{skill}</Button>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Experience Cards Section -->
+	<section id="work" class="section-experience">
+		<Starfield density="medium" animated={true} />
+		<AbstractShapes variant="section" />
+
+		<div class="container">
+			<div class="section-header">
+				<span class="section-label">Work History</span>
+				<h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
+				<p class="section-description">
+					Futuristic card design with gradient borders and noise texture effects
+				</p>
+			</div>
+
+			<div class="experience-list">
+				{experiences.map((exp) => (
+					<ExperienceCard
+						number={exp.number}
+						title={exp.title}
+						company={exp.company}
+						location={exp.location}
+						duration={exp.duration}
+						years={exp.years}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Section -->
+	<section id="contact" class="section-contact">
+		<Starfield density="medium" animated={true} />
+		<AbstractShapes variant="hero" />
+
+		<div class="container">
+			<div class="contact-content">
+				<span class="section-label">Get In Touch</span>
+				<h2 class="contact-title">
+					Say <span class="gradient-text-large">Hi!</span>
+				</h2>
+				<p class="contact-description">
+					Let's work together to create something amazing. I'm always open to discussing new projects and creative ideas.
+				</p>
+
+				<div class="contact-methods">
+					<a href="mailto:hello@example.com" class="contact-card">
+						<div class="contact-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+						</div>
+						<h3 class="contact-card-title">Email</h3>
+						<p class="contact-card-text">hello@example.com</p>
+					</a>
+
+					<a href="https://linkedin.com" class="contact-card">
+						<div class="contact-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+								<rect x="2" y="9" width="4" height="12"></rect>
+								<circle cx="4" cy="4" r="2"></circle>
+							</svg>
+						</div>
+						<h3 class="contact-card-title">LinkedIn</h3>
+						<p class="contact-card-text">Connect with me</p>
+					</a>
+
+					<a href="https://github.com" class="contact-card">
+						<div class="contact-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+							</svg>
+						</div>
+						<h3 class="contact-card-title">GitHub</h3>
+						<p class="contact-card-text">View my code</p>
+					</a>
+				</div>
+
+				<div class="contact-cta">
+					<Button variant="primary" size="large" href="mailto:hello@example.com">
+						SEND MESSAGE
+					</Button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-content">
+				<p class="footer-text">Built with Astro • Designed with ❤️</p>
+				<a href="/" class="footer-link">← Back to Home</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		background: #0a0a0f;
+		color: #ffffff;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden;
+	}
+
+	.container {
+		position: relative;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 2rem;
+		z-index: 1;
+	}
+
+	/* Section Styles */
+	.section-showcase,
+	.section-experience,
+	.section-contact {
+		position: relative;
+		padding: 8rem 0;
+		overflow: hidden;
+	}
+
+	.section-showcase {
+		background: linear-gradient(180deg, #0a0a0f 0%, #0d0d14 100%);
+	}
+
+	.section-experience {
+		background: linear-gradient(180deg, #0d0d14 0%, #0a0a0f 100%);
+	}
+
+	.section-contact {
+		background: linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%);
+		padding: 10rem 0;
+	}
+
+	/* Section Headers */
+	.section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.section-label {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background: rgba(139, 92, 246, 0.1);
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 2rem;
+		color: #8b5cf6;
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 1.5rem;
+	}
+
+	.section-title {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+	}
+
+	.gradient-text {
+		background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #ef4444 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.section-description {
+		font-size: 1.125rem;
+		color: rgba(255, 255, 255, 0.6);
+		max-width: 600px;
+		margin: 0 auto;
+		line-height: 1.7;
+	}
+
+	/* Buttons Grid */
+	.buttons-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.button-demo-card {
+		background: linear-gradient(135deg, rgba(15, 15, 30, 0.6), rgba(10, 10, 25, 0.8));
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		padding: 2rem;
+		backdrop-filter: blur(10px);
+	}
+
+	.button-demo-card.full-width {
+		grid-column: 1 / -1;
+	}
+
+	.demo-card-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin-bottom: 0.5rem;
+	}
+
+	.demo-card-description {
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 1.5rem;
+		line-height: 1.6;
+	}
+
+	.button-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.tags-group {
+		gap: 0.75rem;
+	}
+
+	/* Experience List */
+	.experience-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	/* Contact Section */
+	.contact-content {
+		text-align: center;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.contact-title {
+		font-size: clamp(3rem, 8vw, 6rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin-bottom: 1.5rem;
+		letter-spacing: -0.03em;
+		line-height: 1;
+	}
+
+	.gradient-text-large {
+		background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 40%, #ef4444 80%, #f59e0b 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		background-size: 200% 200%;
+		animation: gradient-shift 5s ease infinite;
+	}
+
+	@keyframes gradient-shift {
+		0%, 100% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+	}
+
+	.contact-description {
+		font-size: 1.25rem;
+		color: rgba(255, 255, 255, 0.6);
+		max-width: 600px;
+		margin: 0 auto 3rem;
+		line-height: 1.8;
+	}
+
+	.contact-methods {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.contact-card {
+		background: linear-gradient(135deg, rgba(15, 15, 30, 0.6), rgba(10, 10, 25, 0.8));
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		padding: 2.5rem 2rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.contact-card:hover {
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+		border-color: rgba(139, 92, 246, 0.5);
+		transform: translateY(-5px);
+		box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+	}
+
+	.contact-icon {
+		width: 64px;
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(139, 92, 246, 0.1);
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 50%;
+		color: #8b5cf6;
+		transition: all 0.3s ease;
+	}
+
+	.contact-card:hover .contact-icon {
+		background: rgba(139, 92, 246, 0.2);
+		border-color: rgba(139, 92, 246, 0.5);
+		transform: scale(1.1);
+	}
+
+	.contact-card-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	.contact-card-text {
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	.contact-cta {
+		display: flex;
+		justify-content: center;
+	}
+
+	/* Footer */
+	.footer {
+		padding: 3rem 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		background: #0a0a0f;
+	}
+
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.footer-text {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.875rem;
+	}
+
+	.footer-link {
+		color: #8b5cf6;
+		text-decoration: none;
+		font-weight: 600;
+		transition: all 0.3s ease;
+	}
+
+	.footer-link:hover {
+		color: #ec4899;
+	}
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.section-showcase,
+		.section-experience,
+		.section-contact {
+			padding: 5rem 0;
+		}
+
+		.section-contact {
+			padding: 6rem 0;
+		}
+
+		.container {
+			padding: 0 1.5rem;
+		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.section-title {
+			font-size: 2rem;
+		}
+
+		.section-description {
+			font-size: 1rem;
+		}
+
+		.buttons-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.button-group {
+			flex-direction: column;
+		}
+
+		.tags-group {
+			flex-direction: row;
+		}
+
+		.contact-methods {
+			grid-template-columns: 1fr;
+		}
+
+		.footer-content {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.section-showcase,
+		.section-experience,
+		.section-contact {
+			padding: 4rem 0;
+		}
+
+		.container {
+			padding: 0 1rem;
+		}
+
+		.button-demo-card {
+			padding: 1.5rem;
+		}
+
+		.contact-card {
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>

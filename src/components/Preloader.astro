@@ -1,0 +1,445 @@
+---
+import { SITE } from "../config/site";
+
+const { author: name, role } = SITE;
+---
+
+<div class="preloader">
+    <div class="preloader-content">
+        <!-- Name -->
+        <div class="preloader-text">
+            <h1 class="preloader-name">
+                {
+                    name.split(" ").map((word) => (
+                        <span class="word">
+                            {word.split("").map((char) => (
+                                <span class="char">{char}</span>
+                            ))}
+                        </span>
+                    ))
+                }
+            </h1>
+
+            <div class="divider"></div>
+
+            <p class="preloader-role">{role}</p>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <span class="progress-number">0</span>
+        </div>
+    </div>
+
+    <!-- Minimal Decoration -->
+    <div class="preloader-corner corner-tl"></div>
+    <div class="preloader-corner corner-tr"></div>
+    <div class="preloader-corner corner-bl"></div>
+    <div class="preloader-corner corner-br"></div>
+</div>
+
+<style>
+    .preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0a0f;
+        overflow: hidden;
+    }
+
+    .preloader-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+        padding: 2rem;
+        max-width: 90%;
+    }
+
+    /* Text */
+    .preloader-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .preloader-name {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        text-align: center;
+        line-height: 1.2;
+        margin: 0;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .word {
+        display: flex;
+        justify-content: center;
+    }
+
+    .char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    /* Divider */
+    .divider {
+        width: 60px;
+        height: 1px;
+        background: #ffffff;
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .preloader-role {
+        font-size: clamp(0.75rem, 1.5vw, 1rem);
+        font-weight: 400;
+        letter-spacing: 0.4em;
+        text-align: center;
+        color: #a1a1aa;
+        margin: 0;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    /* Progress */
+    .progress-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 200px;
+        opacity: 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: #ffffff;
+        position: relative;
+    }
+
+    .progress-number {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: #71717a;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.1em;
+    }
+
+    /* Corner Decorations */
+    .preloader-corner {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+    }
+
+    .preloader-corner::before,
+    .preloader-corner::after {
+        content: "";
+        position: absolute;
+        background: #ffffff;
+    }
+
+    .preloader-corner::before {
+        width: 20px;
+        height: 1px;
+    }
+
+    .preloader-corner::after {
+        width: 1px;
+        height: 20px;
+    }
+
+    .corner-tl {
+        top: 2rem;
+        left: 2rem;
+    }
+
+    .corner-tl::before {
+        top: 0;
+        left: 0;
+    }
+
+    .corner-tl::after {
+        top: 0;
+        left: 0;
+    }
+
+    .corner-tr {
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .corner-tr::before {
+        top: 0;
+        right: 0;
+    }
+
+    .corner-tr::after {
+        top: 0;
+        right: 0;
+    }
+
+    .corner-bl {
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    .corner-bl::before {
+        bottom: 0;
+        left: 0;
+    }
+
+    .corner-bl::after {
+        bottom: 0;
+        left: 0;
+    }
+
+    .corner-br {
+        bottom: 2rem;
+        right: 2rem;
+    }
+
+    .corner-br::before {
+        bottom: 0;
+        right: 0;
+    }
+
+    .corner-br::after {
+        bottom: 0;
+        right: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .preloader-name {
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .preloader-role {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+        }
+
+        .preloader-corner {
+            width: 15px;
+            height: 15px;
+        }
+
+        .preloader-corner::before {
+            width: 15px;
+        }
+
+        .preloader-corner::after {
+            height: 15px;
+        }
+
+        .corner-tl,
+        .corner-tr,
+        .corner-bl,
+        .corner-br {
+            top: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            left: 1rem;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+
+    // Preloader Animation Timeline
+    const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+    });
+
+    // Corner decorations
+    tl.to(".preloader-corner", {
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+    });
+
+    // Name characters
+    tl.to(
+        ".char",
+        {
+            opacity: 1,
+            y: 0,
+            stagger: 0.03,
+            duration: 0.8,
+            ease: "power2.out",
+        },
+        "-=0.4",
+    );
+
+    // Divider
+    tl.to(
+        ".divider",
+        {
+            opacity: 1,
+            scaleX: 1,
+            duration: 0.6,
+            ease: "power2.out",
+        },
+        "-=0.3",
+    );
+
+    // Role
+    tl.to(
+        ".preloader-role",
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+        },
+        "-=0.3",
+    );
+
+    // Progress
+    tl.to(
+        ".progress-container",
+        {
+            opacity: 1,
+            duration: 0.6,
+        },
+        "-=0.2",
+    );
+
+    // Progress counter
+    const progressObj = { value: 0 };
+    const progressNumber = document.querySelector(".progress-number");
+
+    tl.to(
+        progressObj,
+        {
+            value: 100,
+            duration: 2,
+            ease: "power1.inOut",
+            onUpdate: () => {
+                if (progressNumber) {
+                    progressNumber.textContent = Math.round(
+                        progressObj.value,
+                    ).toString();
+                }
+                gsap.to(".progress-fill", {
+                    width: `${progressObj.value}%`,
+                    duration: 0.1,
+                });
+            },
+        },
+        "-=0.2",
+    );
+
+    // Exit animation
+    tl.to(
+        ".progress-container",
+        {
+            opacity: 0,
+            duration: 0.4,
+        },
+        "+=0.5",
+    );
+
+    tl.to(
+        ".preloader-role",
+        {
+            opacity: 0,
+            y: -20,
+            duration: 0.4,
+        },
+        "-=0.3",
+    );
+
+    tl.to(
+        ".divider",
+        {
+            opacity: 0,
+            scaleX: 0,
+            duration: 0.4,
+        },
+        "-=0.3",
+    );
+
+    tl.to(
+        ".char",
+        {
+            opacity: 0,
+            y: -40,
+            stagger: 0.02,
+            duration: 0.6,
+        },
+        "-=0.3",
+    );
+
+    tl.to(
+        ".preloader-corner",
+        {
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.05,
+        },
+        "-=0.4",
+    );
+
+    tl.to(
+        ".preloader",
+        {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.inOut",
+            onComplete: () => {
+                const preloader = document.querySelector(".preloader");
+                if (preloader) {
+                    preloader.style.display = "none";
+                }
+                document.body.style.overflow = "auto";
+            },
+        },
+        "-=0.2",
+    );
+
+    // Disable scrolling
+    document.body.style.overflow = "hidden";
+
+    // Start animation after minimum time
+    const minTime = 2000;
+    const startTime = Date.now();
+
+    window.addEventListener("load", () => {
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, minTime - elapsed);
+
+        setTimeout(() => {
+            tl.play();
+        }, remaining);
+    });
+</script>

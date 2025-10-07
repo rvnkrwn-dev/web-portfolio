@@ -1,0 +1,206 @@
+---
+import { STATS } from "../config/site";
+---
+
+<section class="stats-gsap">
+    <div class="container">
+        <div class="stats-grid">
+            {
+                STATS.map((stat, index) => (
+                    <div class="stat-item" data-index={index}>
+                        <div class="stat-number-wrapper">
+                            <span class="stat-number" data-target={stat.number}>
+                                0
+                            </span>
+                            {stat.suffix && (
+                                <span class="stat-suffix">{stat.suffix}</span>
+                            )}
+                        </div>
+                        <p class="stat-label">{stat.label}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .stats-gsap {
+        position: relative;
+        padding: 6rem 0;
+        background: var(--bg-primary);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0;
+    }
+
+    .stat-item {
+        position: relative;
+        padding: 3rem 2rem;
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .stat-item:last-child {
+        border-right: none;
+    }
+
+    .stat-item:hover {
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .stat-number-wrapper {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .stat-number {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-weight: 300;
+        color: #ffffff;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .stat-suffix {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 300;
+        color: #ffffff;
+        margin-left: 0.25rem;
+    }
+
+    .stat-label {
+        color: #71717a;
+        font-size: 0.875rem;
+        font-weight: 400;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .stats-gsap {
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat-item {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item:nth-child(2n) {
+            border-right: none;
+        }
+
+        .stat-item:nth-last-child(-n + 2) {
+            border-bottom: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-item {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate stat items on scroll
+    const statItems = gsap.utils.toArray(".stat-item");
+
+    statItems.forEach((item: any, index) => {
+        gsap.to(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: "top 85%",
+                once: true,
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: index * 0.1,
+            ease: "power3.out",
+        });
+    });
+
+    // Counter animation
+    const animateCounter = (
+        element: HTMLElement,
+        target: number,
+        suffix: string = "",
+    ) => {
+        const counter = { value: 0 };
+
+        gsap.to(counter, {
+            value: target,
+            duration: 2.5,
+            ease: "power2.out",
+            onUpdate: () => {
+                element.textContent = Math.ceil(counter.value).toString();
+            },
+            scrollTrigger: {
+                trigger: element,
+                start: "top 80%",
+                once: true,
+            },
+        });
+    };
+
+    // Initialize counters
+    document.querySelectorAll(".stat-number").forEach((el) => {
+        const element = el as HTMLElement;
+        const target = parseInt(element.dataset.target || "0");
+        animateCounter(element, target);
+    });
+
+    // Parallax effect on stat items
+    statItems.forEach((item: any) => {
+        gsap.to(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+            },
+            y: -30,
+            ease: "none",
+        });
+    });
+</script>
