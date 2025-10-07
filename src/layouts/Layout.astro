@@ -1042,22 +1042,28 @@ const socialLinks = {
             delay: 0.3,
         });
 
-        gsap.from(".nav-links li", {
-            y: -20,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.6,
-            ease: "power3.out",
-            delay: 0.5,
-        });
+        // Only animate nav links on desktop (not mobile menu)
+        if (window.innerWidth > 1024) {
+            gsap.from(".nav-links li", {
+                y: -20,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 0.6,
+                ease: "power3.out",
+                delay: 0.5,
+            });
+        }
 
-        gsap.from(".nav-cta", {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.6,
-            ease: "back.out(1.7)",
-            delay: 0.9,
-        });
+        // Only animate CTA on desktop
+        if (window.innerWidth > 1024) {
+            gsap.from(".nav-cta", {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                delay: 0.9,
+            });
+        }
     }, 5500);
 
     // Original navbar entrance (removed, moved above)
@@ -1130,13 +1136,20 @@ const socialLinks = {
         navLinkItems.forEach((link) => {
             link.addEventListener("click", closeMenu);
         });
+
+        // Close mobile menu on window resize to desktop
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 1024) {
+                closeMenu();
+            }
+        });
     }
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e: Event) {
+        anchor.addEventListener("click", (e: Event) => {
             e.preventDefault();
-            const href = (this as HTMLAnchorElement).getAttribute("href");
+            const href = (anchor as HTMLAnchorElement).getAttribute("href");
             if (href && href !== "#") {
                 const target = document.querySelector(href);
                 if (target) {
