@@ -2,6 +2,7 @@
 import Preloader from "../components/Preloader.astro";
 import CustomCursor from "../components/CustomCursor.astro";
 import NavbarMagnetic from "../components/NavbarMagnetic.astro";
+import { SOCIAL_LINKS } from "../config/site";
 
 interface Props {
     title?: string;
@@ -87,7 +88,7 @@ const socialLinks = {
                         </li>
                         <li class="mobile-cta-item">
                             <a
-                                href="mailto:hello@example.com"
+                                href={SOCIAL_LINKS.email || "#"}
                                 class="nav-link mobile-cta-link"
                             >
                                 <span class="nav-link-text">Hire Me</span>
