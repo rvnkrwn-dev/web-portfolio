@@ -71,6 +71,16 @@ export const PROJECTS = {
       tags: ["Nuxt", "Tailwind"],
       link: "https://puson.zedis.live/",
     },
+    {
+      id: 3,
+      title: "Kasir Leci",
+      category: "Mobile Apps",
+      description:
+        "Android POS application for SMEs with inventory management, sales reporting, receipt printing, and offline support.",
+      image: "/projects/apk-leci-kasir.png",
+      tags: ["Flutter"],
+      link: "https://kasir.leci.app/",
+    },
   ],
 };
 
