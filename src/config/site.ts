@@ -54,12 +54,22 @@ export const PROJECTS = {
     {
       id: 1,
       title: "Portfolio Website",
-      category: "Web Design",
+      category: "Web Developer",
       description:
         "Modern portfolio website with minimalist design and smooth animations, elegantly showcasing professional work and experience.",
       image: "/projects/web-portfolio.png",
       tags: ["Astro", "GSAP"],
       link: "https://rvnkrwn.leci.app",
+    },
+    {
+      id: 2,
+      title: "PUSON",
+      category: "Web Developer",
+      description:
+        "Innovative web platform designed to enhance stunting data management for registered posyandu and puskesmas in Indonesia.",
+      image: "/projects/web-puson.png",
+      tags: ["Nuxt", "Tailwind"],
+      link: "https://puson.zedis.live/",
     },
   ],
 };
