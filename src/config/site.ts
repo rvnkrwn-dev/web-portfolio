@@ -7,7 +7,7 @@ export const SITE = {
   name: "Revan Kurniawan",
   role: "SOFTWARE DEVELOPER",
   email: "rvnkrwn@gmail.com",
-  url: "https://yourportfolio.com",
+  url: "https://rvnkrwn@gmail.com",
 };
 
 // Social Media Links
