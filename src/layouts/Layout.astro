@@ -9,13 +9,6 @@ interface Props {
 }
 
 const { title = "Portfolio" } = Astro.props;
-
-// Social Media Links
-const socialLinks = {
-    github: "https://github.com/rvnkrwn-dev",
-    linkedin: "https://www.linkedin.com/in/rvnkrwn/",
-    twitter: null, // Set to null if not available
-};
 ---
 
 <!doctype html>
@@ -160,7 +153,6 @@ const socialLinks = {
                                 <ul class="footer-list">
                                     <li><a href="/">Home</a></li>
                                     <li><a href="/#projects">Projects</a></li>
-                                    <li><a href="/gsap-demo">Showcase</a></li>
                                     <li><a href="/#contact">Contact</a></li>
                                 </ul>
                             </div>
@@ -168,10 +160,10 @@ const socialLinks = {
                                 <h4 class="footer-heading">Connect</h4>
                                 <ul class="footer-list">
                                     {
-                                        socialLinks.github && (
+                                        SOCIAL_LINKS.github && (
                                             <li>
                                                 <a
-                                                    href={socialLinks.github}
+                                                    href={SOCIAL_LINKS.github}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -181,10 +173,10 @@ const socialLinks = {
                                         )
                                     }
                                     {
-                                        socialLinks.linkedin && (
+                                        SOCIAL_LINKS.linkedin && (
                                             <li>
                                                 <a
-                                                    href={socialLinks.linkedin}
+                                                    href={SOCIAL_LINKS.linkedin}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -194,10 +186,10 @@ const socialLinks = {
                                         )
                                     }
                                     {
-                                        socialLinks.twitter && (
+                                        SOCIAL_LINKS.twitter && (
                                             <li>
                                                 <a
-                                                    href={socialLinks.twitter}
+                                                    href={SOCIAL_LINKS.twitter}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -226,9 +218,9 @@ const socialLinks = {
                         </p>
                         <div class="footer-social">
                             {
-                                socialLinks.github && (
+                                SOCIAL_LINKS.github && (
                                     <a
-                                        href={socialLinks.github}
+                                        href={SOCIAL_LINKS.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="social-link"
@@ -245,9 +237,9 @@ const socialLinks = {
                                 )
                             }
                             {
-                                socialLinks.linkedin && (
+                                SOCIAL_LINKS.linkedin && (
                                     <a
-                                        href={socialLinks.linkedin}
+                                        href={SOCIAL_LINKS.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="social-link"
@@ -264,9 +256,9 @@ const socialLinks = {
                                 )
                             }
                             {
-                                socialLinks.twitter && (
+                                SOCIAL_LINKS.twitter && (
                                     <a
-                                        href={socialLinks.twitter}
+                                        href={SOCIAL_LINKS.twitter}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="social-link"
