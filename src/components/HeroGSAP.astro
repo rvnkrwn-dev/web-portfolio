@@ -33,17 +33,20 @@ const titleWords = title.split(" ");
             <p class="hero-description">{description}</p>
 
             <div class="hero-cta">
-                <a href={cta.primary.href} class="btn btn-primary magnetic">
+                <button
+                    onclick={`scrollToSection('${cta.primary.targetId}')`}
+                    class="btn btn-primary magnetic"
+                >
                     <span class="btn-text">{cta.primary.text}</span>
                     <span class="btn-arrow">→</span>
-                </a>
-                <a
-                    href={cta.secondary.href}
+                </button>
+                <button
+                    onclick={`scrollToSection('${cta.secondary.targetId}')`}
                     class="btn btn-magnetic-underline magnetic magnetic-special"
                 >
                     <span class="btn-text">{cta.secondary.text}</span>
                     <span class="magnetic-underline"></span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
