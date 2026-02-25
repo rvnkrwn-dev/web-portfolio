@@ -14,14 +14,14 @@ export const SITE = {
 export const SOCIAL_LINKS = {
   github: "https://github.com/rvnkrwn-dev",
   linkedin: "https://www.linkedin.com/in/rvnkrwn/",
-  twitter: null,
+  instagram: "https://instagram.com/nwknaver_",
   email: "mailto:rvnkrwn@gmail.com",
 };
 
 // Navigation Links
 export const NAV_LINKS = [
-  { name: "Projects", href: "/#projects" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Projects", targetId: "projects" },
+  { name: "Contact", targetId: "contact" },
   { name: "About", href: "/about" },
 ];
 
@@ -31,8 +31,8 @@ export const HERO = {
   title: "Creative Developer",
   description: SITE.description,
   cta: {
-    primary: { text: "View My Work", href: "#projects" },
-    secondary: { text: "Get in Touch", href: "#contact" },
+    primary: { text: "View My Work", targetId: "projects" },
+    secondary: { text: "Get in Touch", targetId: "contact" },
   },
 };
 
@@ -81,6 +81,26 @@ export const PROJECTS = {
       tags: ["Flutter"],
       link: "https://kasir.leci.app/",
     },
+    {
+      id: 4,
+      title: "Naradev",
+      category: "Web Developer",
+      description:
+        "A modern, editorial full-stack article platform for engineering insights. Features Markdown support, multi-language (i18n), and an intuitive management dashboard.",
+      image: "/projects/naradev.png",
+      tags: ["Nuxt", "Tailwind"],
+      link: "https://naradev.leci.app/",
+    },
+    {
+      id: 5,
+      title: "Prabu Maju Sukses Mandiri",
+      category: "Web Developer",
+      description:
+        "A professional company profile website for a civil infrastructure and construction contractor in Indonesia, showcasing their services and extensive project portfolios.",
+      image: "/projects/company-profile-prabu.png",
+      tags: ["Company Profile", "Web Design"],
+      link: "https://prabumajusuksesmandiri.com",
+    },
   ],
 };
 
@@ -109,10 +129,10 @@ export const CONTACT = {
       link: SOCIAL_LINKS.linkedin,
     },
     {
-      icon: "twitter",
-      label: "Twitter",
-      value: "@yourhandle",
-      link: null,
+      icon: "instagram",
+      label: "Instagram",
+      value: "nwknaver_",
+      link: SOCIAL_LINKS.instagram,
     },
   ],
 };
