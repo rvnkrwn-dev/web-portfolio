@@ -6,19 +6,20 @@ import { SOCIAL_LINKS, NAV_LINKS } from "../config/site";
 
 interface Props {
     title?: string;
+    description?: string;
 }
 
-const { title = "Portfolio" } = Astro.props;
+const {
+    title = "Portfolio",
+    description = "Creative Developer Portfolio with GSAP Animations",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="Creative Developer Portfolio with GSAP Animations"
-        />
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
@@ -1215,7 +1216,7 @@ const { title = "Portfolio" } = Astro.props;
             opacity: 0,
             duration: 0.8,
             ease: "back.out(1.7)",
-            delay: 0.3,
+            delay: 0.4,
         });
 
         // Only animate nav links on desktop (not mobile menu)
@@ -1226,7 +1227,7 @@ const { title = "Portfolio" } = Astro.props;
                 stagger: 0.1,
                 duration: 0.6,
                 ease: "power3.out",
-                delay: 0.5,
+                delay: 0.4,
             });
         }
 
@@ -1240,11 +1241,11 @@ const { title = "Portfolio" } = Astro.props;
                     opacity: 1,
                     duration: 0.6,
                     ease: "back.out(1.7)",
-                    delay: 0.9,
+                    delay: 0.4,
                 },
             );
         }
-    }, 5500);
+    }, 1100);
 
     // Original navbar entrance (removed, moved above)
 
