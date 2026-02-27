@@ -25,10 +25,8 @@ import { PROJECTS } from "../config/site";
                 PROJECTS.items.map((project, index) => (
                     <article class="project-card" data-index={index}>
                         <a
-                            href={project.link}
+                            href={`/projects/${project.slug}`}
                             class="project-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
                         >
                             <div class="project-image-wrapper">
                                 <div class="project-image">
@@ -39,7 +37,7 @@ import { PROJECTS } from "../config/site";
                                     />
                                     <div class="project-overlay">
                                         <span class="view-project">
-                                            View Project
+                                            View Details
                                             <svg
                                                 width="20"
                                                 height="20"
